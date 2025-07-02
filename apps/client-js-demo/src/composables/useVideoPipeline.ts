@@ -13,7 +13,7 @@ import { NetworkTelemetry } from '../../../../libs/moqtail-ts/src/util/telemetry
 import { RefObject } from 'react'
 import { ClockNormalizer } from '../../../../libs/moqtail-ts/src/util/clock_normalizer'
 
-const clockNormal = await ClockNormalizer.create()
+const clockNormal = await ClockNormalizer.create(window.appSettings.clockNormalizationConfig.timeServerUrl,window.appSettings.clockNormalizationConfig.numberOfSamples)
 
 async function initTransport(url: string) {
   const transport = new WebTransport(url)
@@ -604,8 +604,9 @@ function subscribeAndPipeToWorker(
   type: 'moq' | 'moq-audio',
 ) {
   moqClient.subscribe(subscribeMsg).then((stream) => {
+    window.appSettings.playoutBufferConfig.maxLatencyMs
     if (stream instanceof ReadableStream) {
-      const buffer = new PlayoutBuffer(stream,{targetLatencyMs:100,maxLatencyMs:1000,clockNormalizer:clockNormal})
+      const buffer = new PlayoutBuffer(stream,{targetLatencyMs:window.appSettings.playoutBufferConfig.targetLatencyMs,maxLatencyMs:window.appSettings.playoutBufferConfig.maxLatencyMs,clockNormalizer:clockNormal})
       buffer.onObject=(obj) => {
       if (!obj) {
         // Stream ended or error
