@@ -21,7 +21,6 @@ export const handlerSubscribe: ControlMessageHandler<Subscribe> = async (client,
         subscribeOk = SubscribeOk.newAscendingNoContent(msg.requestId, 0n, msg.subscribeParameters)
       }
       const publication = new SubscribePublication(client, track, msg, subscribeOk.largestLocation)
-      console.log('setting publication', msg.requestId, publication)
       client.publications.set(msg.requestId, publication)
       await client.controlStream.send(subscribeOk)
     } else {

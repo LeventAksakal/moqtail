@@ -102,7 +102,6 @@ export class DatagramStatus {
         break
       }
     }
-    console.log('Came here for trying tryFrom with object status')
     const objectStatus = ObjectStatus.tryFrom(buf.getVI())
     return new DatagramStatus(
       msgType,

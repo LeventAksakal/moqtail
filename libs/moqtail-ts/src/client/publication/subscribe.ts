@@ -119,7 +119,6 @@ export class SubscribePublication {
                 const sendStream = await SendStream.new(writeStream, header)
                 this.#streams.set(obj.location.group, sendStream)
                 this.streamsOpened++
-                // console.log('streamsOpened: %d', this.streamsOpened)
               }
               await this.lock.release()
             }

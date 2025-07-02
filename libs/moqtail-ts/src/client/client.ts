@@ -339,12 +339,10 @@ export class MoqtailClient {
         const { value, done } = await reader.read()
         if (done) {
           // WebTransport session is terminated
-          // console.log('_acceptIncomingUniStreams | WebTransport session is terminated')
           break
         }
         ++streamCount
         // TODO: report number of accepted streams.
-        // console.log('_acceptIncomingUniStreams | streamCount: %d', streamCount)
         let uniStream = value as ReadableStream
         this._handleRecvStreams(uniStream)
       }
