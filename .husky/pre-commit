@@ -1,2 +1,8 @@
 npm run format
+# npm run lint
+# npm test
+# npm run type-check
 cargo fmt
+# cargo clippy
+# cargo test
+cargo check

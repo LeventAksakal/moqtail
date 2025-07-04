@@ -18,7 +18,7 @@ export class SimpleLock {
       this.acquiredLock = true
     } else {
       // Lock is held, queue the continuation
-      return new Promise<void>((resolve, _) => {
+      return new Promise<void>((resolve) => {
         this.contQueue.push(resolve)
       })
     }

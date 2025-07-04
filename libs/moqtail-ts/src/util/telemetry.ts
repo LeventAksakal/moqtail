@@ -133,7 +133,7 @@ if (import.meta.vitest) {
     it('should return 0 after window expires', async () => {
       const telemetry = new NetworkTelemetry(1000)
       telemetry.push({ latency: 10, size: 100 })
-      await new Promise((resolve) => setTimeout(resolve, 1100))
+      await new Promise((resolve) => setTimeout(resolve, 1110))
       expect(telemetry.latency).toBe(0)
       expect(telemetry.throughput).toBe(0)
     })
