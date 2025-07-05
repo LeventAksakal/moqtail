@@ -39,9 +39,9 @@ if (import.meta.vitest) {
       const telemetry = new NetworkTelemetry(1000)
       const latency = 10
       const size = 100
-      const producerIntervalMs = 100
-      const consumerIntervalMs = 50
-      const consumerDurationMs = 2000
+      const producerIntervalMs = 20 // Reduced from 100ms
+      const consumerIntervalMs = 10 // Reduced from 50ms
+      const consumerDurationMs = 500 // Reduced from 2000ms
       const latencyTolerance = 10
       const throughputTolerance = 100
 
@@ -81,14 +81,14 @@ if (import.meta.vitest) {
       }
 
       await startProducer({ latency, size })
-    }, 8000)
+    }, 1000) // Reduced from 8000ms
 
     it('should increase values for increasing input', async () => {
       const telemetry = new NetworkTelemetry(1000)
       let latency = 10
       let size = 100
-      const intervalMs = 50
-      const consumerDurationMs = 2000
+      const intervalMs = 10 // Reduced from 50ms
+      const consumerDurationMs = 500 // Reduced from 2000ms
       const latencyTolerance = 10
       const throughputTolerance = 100
 
@@ -128,12 +128,12 @@ if (import.meta.vitest) {
       }
 
       await startProducer()
-    }, 8000)
+    }, 1000) // Reduced from 8000ms
 
     it('should return 0 after window expires', async () => {
-      const telemetry = new NetworkTelemetry(1000)
+      const telemetry = new NetworkTelemetry(100) // Reduced window from 1000ms
       telemetry.push({ latency: 10, size: 100 })
-      await new Promise((resolve) => setTimeout(resolve, 1110))
+      await new Promise((resolve) => setTimeout(resolve, 120)) // Reduced from 1110ms
       expect(telemetry.latency).toBe(0)
       expect(telemetry.throughput).toBe(0)
     })

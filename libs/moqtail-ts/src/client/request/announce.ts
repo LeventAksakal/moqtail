@@ -125,7 +125,7 @@ if (import.meta.vitest) {
       setTimeout(() => request.reject(error), 0)
       try {
         await request.finally(finallyCallback)
-      } catch (e) {
+      } catch (_error) {
         // Expected rejection
       }
       expect(finallyCallback).toHaveBeenCalledTimes(1)

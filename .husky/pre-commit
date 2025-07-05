@@ -1,3 +1,8 @@
 npm run format
+npm run lint:moqtail
+npm run type-check:moqtail
+npm run test:moqtail
 cargo fmt
+cargo clippy
 cargo check
+cargo test

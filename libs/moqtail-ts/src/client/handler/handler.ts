@@ -55,6 +55,7 @@ import { ControlMessage } from '../../model/control'
 
 export type ControlMessageHandler<T> = (client: MoqtailClient, msg: T) => Promise<void>
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function getHandlerForControlMessage(msg: ControlMessage): ControlMessageHandler<any> | undefined {
   if (msg instanceof Announce) return handlerAnnounce
   if (msg instanceof AnnounceCancel) return handlerAnnounceCancel

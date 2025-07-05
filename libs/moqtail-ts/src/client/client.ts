@@ -331,7 +331,8 @@ export class MoqtailClient {
   }
 
   private async _acceptIncomingUniStreams(): Promise<void> {
-    let streamCount = 0
+    // TODO: Use _streamCount
+    let _streamCount = 0
     try {
       const uds = this.webTransport.incomingUnidirectionalStreams
       const reader = uds.getReader()
@@ -341,9 +342,9 @@ export class MoqtailClient {
           // WebTransport session is terminated
           break
         }
-        ++streamCount
+        ++_streamCount
         // TODO: report number of accepted streams.
-        let uniStream = value as ReadableStream
+        const uniStream = value as ReadableStream
         this._handleRecvStreams(uniStream)
       }
     } catch (error) {

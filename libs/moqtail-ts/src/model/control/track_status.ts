@@ -50,7 +50,7 @@ export class TrackStatus {
     const requestId = buf.getVI()
     const statusCodeRaw = buf.getVI()
     const statusCode = trackStatusCodeFromBigInt(statusCodeRaw)
-    let largestLocation = buf.getLocation()
+    const largestLocation = buf.getLocation()
     if (
       (statusCode === TrackStatusCode.DoesNotExist || statusCode === TrackStatusCode.NotYetBegun) &&
       !largestLocation.equals(new Location(0n, 0n))

@@ -53,11 +53,11 @@ if (import.meta.vitest) {
       'getClockSkew returns the same value on subsequent calls',
       async () => {
         const offset1 = await AkamaiOffset.getClockSkew()
-        await new Promise((resolve) => setTimeout(resolve, 9000)) // wait a bit to ensure the next call is not instantaneous
+        await new Promise((resolve) => setTimeout(resolve, 100)) // Reduced from 9000ms
         const offset2 = await AkamaiOffset.getClockSkew()
         expect(Math.round(offset1)).toBe(Math.round(offset2))
       },
-      { timeout: 20000 },
+      { timeout: 5000 }, // Reduced from 20000ms
     )
   })
 }

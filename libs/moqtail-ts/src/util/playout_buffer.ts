@@ -132,7 +132,7 @@ export class PlayoutBuffer {
         }
 
         this.#buffer.push(bufferedObject)
-      } catch (error) {
+      } catch (_error) {
         this.cleanup()
       }
     }

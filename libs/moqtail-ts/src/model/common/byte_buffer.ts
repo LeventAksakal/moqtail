@@ -99,7 +99,7 @@ export abstract class BaseByteBuffer {
   }
 
   getNumberVI(): number {
-    let big = this.getVI()
+    const big = this.getVI()
     if (big > Number.MAX_SAFE_INTEGER)
       throw new CastingError(
         'BaseByteBuffer.getNumberVI()',
